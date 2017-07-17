@@ -12,3 +12,40 @@
     If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
   </p>
 </ion-content>
+
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Birthdays
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="showDetail()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<!-- In order for MobX to automatically update the page, we need to use the *mobxAutorun directive (which is provided
+by mobx-angular).-->
+<ion-content class="home" *mobxAutorun>
+    <!-- Today's birthdays list. -->
+    <ion-item-group>
+        <ion-item-divider color="light">{{ today | date:'fullDate' }}</ion-item-divider>
+        <ion-item *ngIf="store.birthdaysToday.length == 0">
+            <div>No cake today...</div>
+        </ion-item>
+        <ion-item *ngFor="let birthday of store.birthdaysToday">
+            {{ birthday.name }} is {{ birthday.age}} years old today
+        </ion-item>
+    </ion-item-group>
+
+    <!-- All birthdays list. -->
+    <ion-item-group>
+        <ion-item-divider color="light">All Birthdays</ion-item-divider>
+        <button ion-item *ngFor="let birthday of store.birthdays" (click)="showDetail(birthday)">
+            <div>{{ birthday.name }}</div>
+            <div item-end>{{ birthday.date | date:'yMMMMd' }}</div>
+        </button>
+    </ion-item-group>
+</ion-content>
