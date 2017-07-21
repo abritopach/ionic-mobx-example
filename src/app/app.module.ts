@@ -11,6 +11,9 @@ import { DetailsPage } from './../pages/details/details';
 import { MobxAngularModule } from 'mobx-angular';
 import { BirthdayStore } from '../stores/birthday.store';
 
+import { BirthdayService } from '../providers/birthday-service/birthday-service';
+import { IonicStorageModule } from "@ionic/storage";
+
 @NgModule({
     declarations: [
         MyApp,
@@ -20,7 +23,11 @@ import { BirthdayStore } from '../stores/birthday.store';
     imports: [
         BrowserModule,
         MobxAngularModule,
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp),
+        IonicStorageModule.forRoot({
+            name: '__mydb',
+            driverOrder: ['sqlite', 'websql', 'indexeddb']
+        })
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -32,7 +39,8 @@ import { BirthdayStore } from '../stores/birthday.store';
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-        BirthdayStore
+        BirthdayStore,
+        BirthdayService
     ]
 })
 export class AppModule {}

@@ -5,6 +5,7 @@ Sample project that shows how mobx can help you manage application state in your
 Original source (Ashteya Biharisingh):
 
 - https://gonehybrid.com/how-to-manage-state-in-ionic-apps-with-mobx-part-1/
+- https://gonehybrid.com/how-to-manage-state-in-ionic-apps-with-mobx-part-2/
 
 * FrontEnd: Ionic App.
 
